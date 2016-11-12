@@ -5,23 +5,29 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './login/signup.component';
 import { AboutComponent } from './about/about.component';
 import { DataService } from './services/data.service';
 
 import { ToastComponent } from './shared/toast/toast.component';
+import {SearchComponent} from "./search/search.component";
+import {CompareComponent} from "./compare/compare.component";
 
 const routing = RouterModule.forRoot([
-    { path: '',      component: HomeComponent },
-    { path: 'about', component: AboutComponent }
+    { path: '',      component: LoginComponent },
+    { path: 'signup', component: SignUpComponent },
+    { path: 'search', component: SearchComponent },
+    { path: 'compare', component: CompareComponent }
 ]);
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    AboutComponent,
-    ToastComponent
+    LoginComponent,
+    SignUpComponent,
+    SearchComponent,
+    CompareComponent
   ],
   imports: [
     BrowserModule,
