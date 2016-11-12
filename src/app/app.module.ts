@@ -7,10 +7,8 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './login/signup.component';
-import { AboutComponent } from './about/about.component';
 import { DataService } from './services/data.service';
 
-import { ToastComponent } from './shared/toast/toast.component';
 import {SearchComponent} from "./search/search.component";
 import {CompareComponent} from "./compare/compare.component";
 
@@ -37,8 +35,7 @@ const routing = RouterModule.forRoot([
     routing
   ],
   providers: [
-    DataService,
-    ToastComponent
+    DataService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

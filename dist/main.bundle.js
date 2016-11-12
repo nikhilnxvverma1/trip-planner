@@ -42659,50 +42659,7 @@ var DataService = (function () {
 
 
 /***/ },
-/* 322 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return ToastComponent; });
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var ToastComponent = (function () {
-    function ToastComponent() {
-        this.message = { body: '', type: '' };
-    }
-    ToastComponent.prototype.setMessage = function (body, type, time) {
-        var _this = this;
-        if (time === void 0) { time = 3000; }
-        this.message.body = body;
-        this.message.type = type;
-        setTimeout(function () { _this.message.body = ''; }, time);
-    };
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Input */])(), 
-        __metadata('design:type', Object)
-    ], ToastComponent.prototype, "message", void 0);
-    ToastComponent = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
-            selector: 'app-toast',
-            template: __webpack_require__(657),
-            styles: [__webpack_require__(652)]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], ToastComponent);
-    return ToastComponent;
-}());
-
-
-/***/ },
+/* 322 */,
 /* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -56960,9 +56917,8 @@ function getResolve(route) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__login_login_component__ = __webpack_require__(686);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_signup_component__ = __webpack_require__(689);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_data_service__ = __webpack_require__(321);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__shared_toast_toast_component__ = __webpack_require__(322);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__search_search_component__ = __webpack_require__(692);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__compare_compare_component__ = __webpack_require__(694);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__search_search_component__ = __webpack_require__(692);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__compare_compare_component__ = __webpack_require__(694);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -56984,12 +56940,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
 var routing = __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* RouterModule */].forRoot([
     { path: '', component: __WEBPACK_IMPORTED_MODULE_6__login_login_component__["a" /* LoginComponent */] },
     { path: 'signup', component: __WEBPACK_IMPORTED_MODULE_7__login_signup_component__["a" /* SignUpComponent */] },
-    { path: 'search', component: __WEBPACK_IMPORTED_MODULE_10__search_search_component__["a" /* SearchComponent */] },
-    { path: 'compare', component: __WEBPACK_IMPORTED_MODULE_11__compare_compare_component__["a" /* CompareComponent */] }
+    { path: 'search', component: __WEBPACK_IMPORTED_MODULE_9__search_search_component__["a" /* SearchComponent */] },
+    { path: 'compare', component: __WEBPACK_IMPORTED_MODULE_10__compare_compare_component__["a" /* CompareComponent */] }
 ]);
 var AppModule = (function () {
     function AppModule() {
@@ -57000,8 +56955,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_6__login_login_component__["a" /* LoginComponent */],
                 __WEBPACK_IMPORTED_MODULE_7__login_signup_component__["a" /* SignUpComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__search_search_component__["a" /* SearchComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__compare_compare_component__["a" /* CompareComponent */]
+                __WEBPACK_IMPORTED_MODULE_9__search_search_component__["a" /* SearchComponent */],
+                __WEBPACK_IMPORTED_MODULE_10__compare_compare_component__["a" /* CompareComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["b" /* BrowserModule */],
@@ -57011,8 +56966,7 @@ var AppModule = (function () {
                 routing
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_8__services_data_service__["a" /* DataService */],
-                __WEBPACK_IMPORTED_MODULE_9__shared_toast_toast_component__["a" /* ToastComponent */]
+                __WEBPACK_IMPORTED_MODULE_8__services_data_service__["a" /* DataService */]
             ],
             schemas: [__WEBPACK_IMPORTED_MODULE_1__angular_core__["Y" /* CUSTOM_ELEMENTS_SCHEMA */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
@@ -57025,19 +56979,7 @@ var AppModule = (function () {
 
 /***/ },
 /* 487 */,
-/* 488 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_component__ = __webpack_require__(320);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(486);
-/* unused harmony namespace reexport */
-/* harmony namespace reexport (by used) */ __webpack_require__.d(exports, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__app_module__["a"]; });
-
-
-
-
-/***/ },
+/* 488 */,
 /* 489 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -60119,12 +60061,7 @@ module.exports = ""
 
 /***/ },
 /* 651 */,
-/* 652 */
-/***/ function(module, exports) {
-
-module.exports = ".alert {\n\tz-index: 999;\n\tposition: fixed;\n\tbottom: 15px;\n\tleft: 25%;\n\twidth: 50%;\n\topacity: 0.9;\n}"
-
-/***/ },
+/* 652 */,
 /* 653 */,
 /* 654 */,
 /* 655 */
@@ -60134,12 +60071,7 @@ module.exports = "<router-outlet></router-outlet>"
 
 /***/ },
 /* 656 */,
-/* 657 */
-/***/ function(module, exports) {
-
-module.exports = "<div *ngIf=\"message.body\" class=\"alert alert-{{message.type}} alert-dismissible\" role=\"alert\">\n  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n  <strong>Message:</strong> {{message.body}}\n</div>"
-
-/***/ },
+/* 657 */,
 /* 658 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -62917,7 +62849,7 @@ module.exports = __webpack_require__(685);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__(458);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__(489);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app___ = __webpack_require__(488);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_app_module__ = __webpack_require__(486);
 
 
 
@@ -62926,7 +62858,7 @@ module.exports = __webpack_require__(685);
 if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["_25" /* enableProdMode */])();
 }
-__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_4__app___["a" /* AppModule */]);
+__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_4__app_app_module__["a" /* AppModule */]);
 
 
 /***/ },
@@ -63052,7 +62984,7 @@ var SearchComponent = (function () {
 /* 693 */
 /***/ function(module, exports) {
 
-module.exports = "<h1>search</h1>\n<a href=\"/compare\">compare</a>"
+module.exports = "<h1>search</h1>\n<a href=\"/compare\" (click)=\"mouseClikce($event)\">compare</a>"
 
 /***/ },
 /* 694 */
