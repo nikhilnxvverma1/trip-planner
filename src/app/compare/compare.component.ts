@@ -8,6 +8,11 @@ import { Component } from '@angular/core';
     templateUrl: './compare.component.html',
 })
 export class CompareComponent {
+    private _selectedIndex:number=0;
     constructor() { }
+
+    selectInfographic(index:number){
+        this._selectedIndex=index;
+    }
 
 }

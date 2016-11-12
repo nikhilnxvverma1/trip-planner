@@ -42637,18 +42637,6 @@ var DataService = (function () {
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json', 'charset': 'UTF-8' });
         this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* RequestOptions */]({ headers: this.headers });
     }
-    DataService.prototype.getCats = function () {
-        return this.http.get('/cats').map(function (res) { return res.json(); });
-    };
-    DataService.prototype.addCat = function (cat) {
-        return this.http.post("/cat", JSON.stringify(cat), this.options);
-    };
-    DataService.prototype.editCat = function (cat) {
-        return this.http.put("/cat/" + cat._id, JSON.stringify(cat), this.options);
-    };
-    DataService.prototype.deleteCat = function (cat) {
-        return this.http.delete("/cat/" + cat._id, this.options);
-    };
     DataService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Injectable */])(), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */]) === 'function' && _a) || Object])
@@ -56918,7 +56906,13 @@ function getResolve(route) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__login_signup_component__ = __webpack_require__(689);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_data_service__ = __webpack_require__(321);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__search_search_component__ = __webpack_require__(692);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__compare_compare_component__ = __webpack_require__(694);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__search_search_bar_component__ = __webpack_require__(698);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__search_search_item_component__ = __webpack_require__(696);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__compare_compare_component__ = __webpack_require__(694);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__compare_distance_component__ = __webpack_require__(700);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__compare_temperature_component__ = __webpack_require__(703);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__compare_rating_component__ = __webpack_require__(702);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__compare_location_component__ = __webpack_require__(701);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -56940,11 +56934,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
+
+
+
 var routing = __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* RouterModule */].forRoot([
     { path: '', component: __WEBPACK_IMPORTED_MODULE_6__login_login_component__["a" /* LoginComponent */] },
     { path: 'signup', component: __WEBPACK_IMPORTED_MODULE_7__login_signup_component__["a" /* SignUpComponent */] },
     { path: 'search', component: __WEBPACK_IMPORTED_MODULE_9__search_search_component__["a" /* SearchComponent */] },
-    { path: 'compare', component: __WEBPACK_IMPORTED_MODULE_10__compare_compare_component__["a" /* CompareComponent */] }
+    { path: 'compare', component: __WEBPACK_IMPORTED_MODULE_12__compare_compare_component__["a" /* CompareComponent */] }
 ]);
 var AppModule = (function () {
     function AppModule() {
@@ -56956,7 +56956,13 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_6__login_login_component__["a" /* LoginComponent */],
                 __WEBPACK_IMPORTED_MODULE_7__login_signup_component__["a" /* SignUpComponent */],
                 __WEBPACK_IMPORTED_MODULE_9__search_search_component__["a" /* SearchComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__compare_compare_component__["a" /* CompareComponent */]
+                __WEBPACK_IMPORTED_MODULE_11__search_search_item_component__["a" /* SearchItemComponent */],
+                __WEBPACK_IMPORTED_MODULE_10__search_search_bar_component__["a" /* SearchBarComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__compare_compare_component__["a" /* CompareComponent */],
+                __WEBPACK_IMPORTED_MODULE_16__compare_location_component__["a" /* LocationComponent */],
+                __WEBPACK_IMPORTED_MODULE_15__compare_rating_component__["a" /* RatingComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__compare_temperature_component__["a" /* TemperatureComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__compare_distance_component__["a" /* DistanceComponent */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["b" /* BrowserModule */],
@@ -62984,7 +62990,7 @@ var SearchComponent = (function () {
 /* 693 */
 /***/ function(module, exports) {
 
-module.exports = "<h1>search</h1>\n<a href=\"/compare\" (click)=\"mouseClikce($event)\">compare</a>"
+module.exports = "<h1>search</h1>\n<search-bar></search-bar>\n<a href=\"/compare\">compare</a>\n\n<search-item></search-item>\n<search-item></search-item>\n<search-item></search-item>\n<search-item></search-item>"
 
 /***/ },
 /* 694 */
@@ -63005,7 +63011,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var CompareComponent = (function () {
     function CompareComponent() {
+        this._selectedIndex = 0;
     }
+    CompareComponent.prototype.selectInfographic = function (index) {
+        this._selectedIndex = index;
+    };
     CompareComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
             selector: 'compare',
@@ -63021,7 +63031,229 @@ var CompareComponent = (function () {
 /* 695 */
 /***/ function(module, exports) {
 
-module.exports = "<h1>compare</h1>"
+module.exports = "<h1>compare</h1>\n\n<h3 (click)=\"selectInfographic(0)\">map</h3>\n<h3 (click)=\"selectInfographic(1)\">rating</h3>\n<h3 (click)=\"selectInfographic(2)\">distance</h3>\n<h3 (click)=\"selectInfographic(3)\">temparature</h3>\n\n<div *ngIf=\"_selectedIndex==0\"><location></location></div>\n<div *ngIf=\"_selectedIndex==1\"><rating></rating></div>\n<div *ngIf=\"_selectedIndex==2\"><distance></distance></div>\n<div *ngIf=\"_selectedIndex==3\"><temperature></temperature></div>"
+
+/***/ },
+/* 696 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return SearchItemComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var SearchItemComponent = (function () {
+    function SearchItemComponent() {
+    }
+    SearchItemComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
+            selector: 'search-item',
+            template: __webpack_require__(697),
+        }), 
+        __metadata('design:paramtypes', [])
+    ], SearchItemComponent);
+    return SearchItemComponent;
+}());
+
+
+/***/ },
+/* 697 */
+/***/ function(module, exports) {
+
+module.exports = "<h5>search result</h5>"
+
+/***/ },
+/* 698 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return SearchBarComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var SearchBarComponent = (function () {
+    function SearchBarComponent() {
+    }
+    SearchBarComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
+            selector: 'search-bar',
+            template: __webpack_require__(699),
+        }), 
+        __metadata('design:paramtypes', [])
+    ], SearchBarComponent);
+    return SearchBarComponent;
+}());
+
+
+/***/ },
+/* 699 */
+/***/ function(module, exports) {
+
+module.exports = "<h1>search bar</h1>"
+
+/***/ },
+/* 700 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return DistanceComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var DistanceComponent = (function () {
+    function DistanceComponent() {
+    }
+    DistanceComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
+            selector: 'distance',
+            template: __webpack_require__(704),
+        }), 
+        __metadata('design:paramtypes', [])
+    ], DistanceComponent);
+    return DistanceComponent;
+}());
+
+
+/***/ },
+/* 701 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return LocationComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var LocationComponent = (function () {
+    function LocationComponent() {
+    }
+    LocationComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
+            selector: 'location',
+            template: __webpack_require__(705),
+        }), 
+        __metadata('design:paramtypes', [])
+    ], LocationComponent);
+    return LocationComponent;
+}());
+
+
+/***/ },
+/* 702 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return RatingComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var RatingComponent = (function () {
+    function RatingComponent() {
+    }
+    RatingComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
+            selector: 'rating',
+            template: __webpack_require__(706),
+        }), 
+        __metadata('design:paramtypes', [])
+    ], RatingComponent);
+    return RatingComponent;
+}());
+
+
+/***/ },
+/* 703 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return TemperatureComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var TemperatureComponent = (function () {
+    function TemperatureComponent() {
+    }
+    TemperatureComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
+            selector: 'temperature',
+            template: __webpack_require__(707),
+        }), 
+        __metadata('design:paramtypes', [])
+    ], TemperatureComponent);
+    return TemperatureComponent;
+}());
+
+
+/***/ },
+/* 704 */
+/***/ function(module, exports) {
+
+module.exports = "<h1>distance</h1>"
+
+/***/ },
+/* 705 */
+/***/ function(module, exports) {
+
+module.exports = "<h1>location</h1>"
+
+/***/ },
+/* 706 */
+/***/ function(module, exports) {
+
+module.exports = "<h1>rating</h1>"
+
+/***/ },
+/* 707 */
+/***/ function(module, exports) {
+
+module.exports = "<h1>temprature</h1>"
 
 /***/ }
 ],[682]);

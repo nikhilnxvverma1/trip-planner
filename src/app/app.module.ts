@@ -10,7 +10,13 @@ import { SignUpComponent } from './login/signup.component';
 import { DataService } from './services/data.service';
 
 import {SearchComponent} from "./search/search.component";
+import {SearchBarComponent} from "./search/search-bar.component";
+import {SearchItemComponent} from "./search/search-item.component";
 import {CompareComponent} from "./compare/compare.component";
+import {DistanceComponent} from "./compare/distance.component";
+import {TemperatureComponent} from "./compare/temperature.component";
+import {RatingComponent} from "./compare/rating.component";
+import {LocationComponent} from "./compare/location.component";
 
 const routing = RouterModule.forRoot([
     { path: '',      component: LoginComponent },
@@ -25,7 +31,13 @@ const routing = RouterModule.forRoot([
     LoginComponent,
     SignUpComponent,
     SearchComponent,
-    CompareComponent
+    SearchItemComponent,
+    SearchBarComponent,
+    CompareComponent,
+    LocationComponent,
+    RatingComponent,
+    TemperatureComponent,
+    DistanceComponent,
   ],
   imports: [
     BrowserModule,

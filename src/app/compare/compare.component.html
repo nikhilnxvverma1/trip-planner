@@ -1,1 +1,11 @@
 <h1>compare</h1>
+
+<h3 (click)="selectInfographic(0)">map</h3>
+<h3 (click)="selectInfographic(1)">rating</h3>
+<h3 (click)="selectInfographic(2)">distance</h3>
+<h3 (click)="selectInfographic(3)">temparature</h3>
+
+<div *ngIf="_selectedIndex==0"><location></location></div>
+<div *ngIf="_selectedIndex==1"><rating></rating></div>
+<div *ngIf="_selectedIndex==2"><distance></distance></div>
+<div *ngIf="_selectedIndex==3"><temperature></temperature></div>

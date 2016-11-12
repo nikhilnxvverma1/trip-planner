@@ -11,20 +11,5 @@ export class DataService {
 
   constructor(private http: Http) { }
 
-  getCats() {
-    return this.http.get('/cats').map(res => res.json());
-  }
-
-  addCat(cat) {
-    return this.http.post("/cat", JSON.stringify(cat), this.options);
-  }
-
-  editCat(cat) {
-    return this.http.put(`/cat/${cat._id}`, JSON.stringify(cat), this.options);
-  }
-
-  deleteCat(cat) {
-    return this.http.delete(`/cat/${cat._id}`, this.options);
-  }
   
 }
