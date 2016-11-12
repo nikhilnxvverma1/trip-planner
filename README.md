@@ -1,1 +1,1 @@
-# trip-planner
+# ng2-boilerplate
