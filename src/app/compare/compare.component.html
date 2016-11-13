@@ -1,11 +1,38 @@
-<h1>compare</h1>
+<div class="top-bar">
+    <a class="back" href="/search/cart"><img src="images/back.png"></a>
+    <h3>Compare</h3>
+</div>
 
-<h3 (click)="selectInfographic(0)">map</h3>
-<h3 (click)="selectInfographic(1)">rating</h3>
-<h3 (click)="selectInfographic(2)">distance</h3>
-<h3 (click)="selectInfographic(3)">temparature</h3>
+<div id="attribute-container">
+    <h3>Compare by</h3>
+    <div class="indented">
+        <div>
+            <input (click)="selectInfographic(0)" name="comparison" type="radio" id="map" />
+            <label for="map">Location</label>
+        </div>
 
-<div *ngIf="_selectedIndex==0"><location></location></div>
-<div *ngIf="_selectedIndex==1"><rating></rating></div>
-<div *ngIf="_selectedIndex==2"><distance></distance></div>
-<div *ngIf="_selectedIndex==3"><temperature></temperature></div>
+        <div>
+            <input (click)="selectInfographic(1)" name="comparison" type="radio" id="rating" />
+            <label for="rating">Rating</label>
+        </div>
+
+        <div>
+            <input (click)="selectInfographic(2)" name="comparison" type="radio" id="distance" />
+            <label for="distance">Distance</label>
+        </div>
+
+        <div>
+            <input (click)="selectInfographic(3)" name="comparison" type="radio" id="temperature" />
+            <label for="temperature">Temperature</label>
+        </div>
+    </div>
+
+</div>
+
+<div id="infographics-container">
+    <div *ngIf="_selectedIndex==0"><location></location></div>
+    <div *ngIf="_selectedIndex==1"><rating></rating></div>
+    <div *ngIf="_selectedIndex==2"><distance></distance></div>
+    <div *ngIf="_selectedIndex==3"><temperature></temperature></div>
+</div>
+
