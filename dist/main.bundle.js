@@ -56913,6 +56913,7 @@ function getResolve(route) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__compare_temperature_component__ = __webpack_require__(703);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__compare_rating_component__ = __webpack_require__(702);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__compare_location_component__ = __webpack_require__(701);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__search_criteria_filter_component__ = __webpack_require__(708);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -56923,6 +56924,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -56958,6 +56960,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_9__search_search_component__["a" /* SearchComponent */],
                 __WEBPACK_IMPORTED_MODULE_11__search_search_item_component__["a" /* SearchItemComponent */],
                 __WEBPACK_IMPORTED_MODULE_10__search_search_bar_component__["a" /* SearchBarComponent */],
+                __WEBPACK_IMPORTED_MODULE_17__search_criteria_filter_component__["a" /* CriteriaFilterComponent */],
                 __WEBPACK_IMPORTED_MODULE_12__compare_compare_component__["a" /* CompareComponent */],
                 __WEBPACK_IMPORTED_MODULE_16__compare_location_component__["a" /* LocationComponent */],
                 __WEBPACK_IMPORTED_MODULE_15__compare_rating_component__["a" /* RatingComponent */],
@@ -62990,7 +62993,7 @@ var SearchComponent = (function () {
 /* 693 */
 /***/ function(module, exports) {
 
-module.exports = "<h1>search</h1>\n<search-bar></search-bar>\n<a href=\"/compare\">compare</a>\n\n<search-item></search-item>\n<search-item></search-item>\n<search-item></search-item>\n<search-item></search-item>"
+module.exports = "\n<h1>search</h1>\n<search-bar></search-bar>\n<criteria-filter></criteria-filter>\n<a href=\"/compare\">compare</a>\n\n<search-item></search-item>\n<search-item></search-item>\n<search-item></search-item>\n<search-item></search-item>"
 
 /***/ },
 /* 694 */
@@ -63105,7 +63108,7 @@ var SearchBarComponent = (function () {
 /* 699 */
 /***/ function(module, exports) {
 
-module.exports = "<h1>search bar</h1>"
+module.exports = "<div id=\"search-bar\" class=\"top-bar\">\n    <input id=\"search-field\" type=\"text\" placeholder=\"Search\">\n</div>"
 
 /***/ },
 /* 700 */
@@ -63254,6 +63257,43 @@ module.exports = "<h1>rating</h1>"
 /***/ function(module, exports) {
 
 module.exports = "<h1>temprature</h1>"
+
+/***/ },
+/* 708 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return CriteriaFilterComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var CriteriaFilterComponent = (function () {
+    function CriteriaFilterComponent() {
+    }
+    CriteriaFilterComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
+            selector: 'criteria-filter',
+            template: __webpack_require__(709),
+        }), 
+        __metadata('design:paramtypes', [])
+    ], CriteriaFilterComponent);
+    return CriteriaFilterComponent;
+}());
+
+
+/***/ },
+/* 709 */
+/***/ function(module, exports) {
+
+module.exports = "<div id=\"criteria-filter-container\">\n\n</div>"
 
 /***/ }
 ],[682]);

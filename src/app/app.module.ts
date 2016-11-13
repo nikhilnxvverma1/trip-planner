@@ -17,6 +17,7 @@ import {DistanceComponent} from "./compare/distance.component";
 import {TemperatureComponent} from "./compare/temperature.component";
 import {RatingComponent} from "./compare/rating.component";
 import {LocationComponent} from "./compare/location.component";
+import {CriteriaFilterComponent} from "./search/criteria-filter.component";
 
 const routing = RouterModule.forRoot([
     { path: '',      component: LoginComponent },
@@ -33,6 +34,7 @@ const routing = RouterModule.forRoot([
     SearchComponent,
     SearchItemComponent,
     SearchBarComponent,
+    CriteriaFilterComponent,
     CompareComponent,
     LocationComponent,
     RatingComponent,
