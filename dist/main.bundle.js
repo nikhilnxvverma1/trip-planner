@@ -57549,6 +57549,7 @@ var SearchItemComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__(497);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return SearchComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -57559,24 +57560,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
 
 var SearchComponent = (function () {
-    function SearchComponent() {
+    function SearchComponent(dataService) {
+        this.dataService = dataService;
+        this.searchItemList = [];
     }
     SearchComponent.prototype.search = function (term) {
         console.log(" term is " + term);
     };
     SearchComponent.prototype.parametersChange = function (parameter) {
         console.log('recieved change for paraemetr ' + parameter);
+        this.parameter = parameter;
     };
     SearchComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
             selector: 'search',
             template: __webpack_require__(675),
-        }), 
-        __metadata('design:paramtypes', [])
+        }),
+        __param(0, __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* Inject */]), 
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */]) === 'function' && _a) || Object])
     ], SearchComponent);
     return SearchComponent;
+    var _a;
 }());
 
 
@@ -60791,7 +60801,7 @@ module.exports = "<div class=\"search-item\">\n    <img class=\"search-item-thum
 /* 675 */
 /***/ function(module, exports) {
 
-module.exports = "<search-bar (search)=\"search($event)\"></search-bar>\n\n<div id=\"search-item-container\">\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n</div>\n\n<criteria-filter (parametersChange)=\"parametersChange()\"></criteria-filter>"
+module.exports = "<search-bar (search)=\"search($event)\"></search-bar>\n\n<div id=\"search-item-container\">\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n</div>\n\n<criteria-filter (parametersChange)=\"parametersChange($event)\"></criteria-filter>"
 
 /***/ },
 /* 676 */

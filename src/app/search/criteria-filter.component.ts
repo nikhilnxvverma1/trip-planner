@@ -11,6 +11,8 @@ declare var $:any;
 })
 export class CriteriaFilterComponent implements OnInit{
 
+    parameter:Parameter;
+
     travelTime=3;
     transportation=1;
     minBudget=2000;
