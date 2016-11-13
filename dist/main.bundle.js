@@ -57561,6 +57561,7 @@ var SearchItemComponent = (function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_data_service__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_search_item__ = __webpack_require__(707);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return SearchComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -57576,9 +57577,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 
 
+
 var SearchComponent = (function () {
-    function SearchComponent(dataService) {
+    function SearchComponent(dataService, _zone) {
         this.dataService = dataService;
+        this._zone = _zone;
         this.searchItemList = [];
     }
     SearchComponent.prototype.search = function (term) {
@@ -57596,12 +57599,42 @@ var SearchComponent = (function () {
     SearchComponent.prototype.searchWithAjax = function () {
         $.ajax({
             url: '/getLatLong?location=' + this.term,
-            type: 'post',
+            type: 'get',
+            _zone: this._zone,
+            list: this.searchItemList,
             error: function (error) {
             },
             success: function (data) {
-                this.findPlaces(data.lat, data.long);
+                var _this = this;
+                this._zone.run(function () {
+                    _this.findPlaces(data.lat, data.lng);
+                });
             },
+            findPlaces: function (lat, long) {
+                $.ajax({
+                    url: 'findplaces/?lat=' + lat + '&long=' + long,
+                    list: this.list,
+                    _zone: this._zone,
+                    type: 'get',
+                    error: function (error) {
+                    },
+                    success: function (data) {
+                        var _this = this;
+                        console.log(data);
+                        this._zone.run(function () {
+                            _this.list.splice(0, _this.list.length);
+                            var array = data.data;
+                            for (var i = 0; i < array.length; i++) {
+                                var searchItem = new __WEBPACK_IMPORTED_MODULE_2__services_search_item__["a" /* SearchItem */]();
+                                searchItem.name = array[i].name;
+                                searchItem.description = array[i].category.localized_name;
+                                searchItem.rating = array[i].rating;
+                                _this.list.push(searchItem);
+                            }
+                        });
+                    },
+                });
+            }
         });
     };
     SearchComponent.prototype.findPlaces = function (lat, long) {
@@ -57624,10 +57657,10 @@ var SearchComponent = (function () {
             template: __webpack_require__(675),
         }),
         __param(0, __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* Inject */]), 
-        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */]) === 'function' && _a) || Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_data_service__["a" /* DataService */]) === 'function' && _a) || Object, (typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* NgZone */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* NgZone */]) === 'function' && _b) || Object])
     ], SearchComponent);
     return SearchComponent;
-    var _a;
+    var _a, _b;
 }());
 
 

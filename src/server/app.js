@@ -178,7 +178,7 @@ db.once('open', function() {
     //The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
     var options = {
       host: 'api.tripadvisor.com',
-      path: '/api/partner/2.0/map/'+lat+','+long+'&key=2224bfda-c43d-4413-9c1d-74d252a545f3',
+      path: '/api/partner/2.0/map/'+lat+','+long+'?key=2224bfda-c43d-4413-9c1d-74d252a545f3',
     };
     callback = function(response) {
       var str = '';
