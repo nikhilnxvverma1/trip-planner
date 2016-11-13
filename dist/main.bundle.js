@@ -57404,6 +57404,7 @@ var SignUpComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__parameter__ = __webpack_require__(706);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return CriteriaFilterComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -57415,9 +57416,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var CriteriaFilterComponent = (function () {
     function CriteriaFilterComponent() {
+        this.travelTime = 3;
+        this.transportation = 1;
+        this.minBudget = 2000;
+        this.maxBudget = 6000;
+        this.parametersChangeEvent = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* EventEmitter */]();
     }
+    CriteriaFilterComponent.prototype.ngOnInit = function () {
+        this.initSliderView();
+        return undefined;
+    };
+    CriteriaFilterComponent.prototype.travelTimeChanged = function () {
+        console.log("Travel time  is " + this.travelTime);
+        this.parametersChangeEvent.emit(new __WEBPACK_IMPORTED_MODULE_1__parameter__["a" /* Parameter */](this.travelTime, this.transportation, this.minBudget, this.maxBudget));
+    };
+    CriteriaFilterComponent.prototype.transportationChanged = function () {
+        console.log("transporttion  is " + this.transportation);
+        this.parametersChangeEvent.emit(new __WEBPACK_IMPORTED_MODULE_1__parameter__["a" /* Parameter */](this.travelTime, this.transportation, this.minBudget, this.maxBudget));
+    };
+    CriteriaFilterComponent.prototype.initSliderView = function () {
+        //$("#budget-slider").ionRangeSlider();
+        var slider = document.getElementById('budget-slider');
+        noUiSlider.create(slider, {
+            start: [this.minBudget, this.minBudget],
+            connect: true,
+            step: 1,
+            range: {
+                'min': [200],
+                'max': [10000]
+            }
+        });
+        slider.noUiSlider.on('change', function () {
+            var values = slider.noUiSlider.get();
+            this.minBudget = values[0];
+            this.maxBudget = values[1];
+            console.log("Value changed " + this.minBudget + " " + this.maxBudget);
+            this.parametersChangeEvent.emit(new __WEBPACK_IMPORTED_MODULE_1__parameter__["a" /* Parameter */](this.travelTime, this.transportation, this.minBudget, this.maxBudget));
+        });
+    };
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Output */])('parametersChange'), 
+        __metadata('design:type', Object)
+    ], CriteriaFilterComponent.prototype, "parametersChangeEvent", void 0);
     CriteriaFilterComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
             selector: 'criteria-filter',
@@ -57448,7 +57491,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var SearchBarComponent = (function () {
     function SearchBarComponent() {
+        this.searchEvent = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* EventEmitter */]();
     }
+    SearchBarComponent.prototype.searchEntered = function (event) {
+        console.log('search term is ' + this.searchTerm);
+        this.searchEvent.emit(this.searchTerm);
+    };
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Output */])('search'), 
+        __metadata('design:type', Object)
+    ], SearchBarComponent.prototype, "searchEvent", void 0);
     SearchBarComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
             selector: 'search-bar',
@@ -57511,6 +57563,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var SearchComponent = (function () {
     function SearchComponent() {
     }
+    SearchComponent.prototype.search = function (term) {
+        console.log(" term is " + term);
+    };
+    SearchComponent.prototype.parametersChange = function (parameter) {
+        console.log('recieved change for paraemetr ' + parameter);
+    };
     SearchComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
             selector: 'search',
@@ -60715,13 +60773,13 @@ module.exports = "<h1>sign up here</h1>\n\n<input type=\"text\" placeholder=\"Us
 /* 672 */
 /***/ function(module, exports) {
 
-module.exports = "<div id=\"criteria-filter-container\">\n    <div class=\"criteria-container\">\n        <h4>Travel Time</h4>\n        <div class=\"indented\">\n            <input type=\"range\" value=\"2\" min=\"1\" max=\"5\">\n        </div>\n    </div>\n    <div class=\"criteria-container\">\n        <h4>Transportation</h4>\n        <div class=\"indented\">\n            <form action=\"\">\n                <ul class=\"no-bullets\">\n                    <li><input type=\"radio\"> Road</li>\n                    <li><input type=\"radio\"> Train</li>\n                    <li><input type=\"radio\"> Plane</li>\n                </ul>\n            </form>\n        </div>\n    </div>\n\n    <div class=\"criteria-container\">\n        <h4>Budget</h4>\n        <div class=\"indented\">\n            <input type=\"range\" value=\"2\" min=\"1\" max=\"5\">\n        </div>\n    </div>\n\n</div>"
+module.exports = "<div id=\"criteria-filter-container\">\n    <div class=\"criteria-container\">\n        <h4>Travel Time</h4>\n        <div class=\"indented range-field\">\n            <input class='criteria-slider' type=\"range\" (ngModelChange)=\"travelTimeChanged()\" [(ngModel)]=\"travelTime\" min=\"1\" max=\"5\">\n        </div>\n    </div>\n    <div class=\"criteria-container\">\n        <h4>Transportation</h4>\n        <div class=\"indented\">\n            <form action=\"\">\n                <ul class=\"no-bullets\">\n                    <li>\n                        <input (change)=\"transportationChanged()\" [(ngModel)]=\"transportation\" value=\"1\" name=\"transportation\" type=\"radio\" id=\"by-road\">\n                        <label for=\"by-road\">Road</label>\n                    </li>\n                    <li>\n                        <input (change)=\"transportationChanged()\" [(ngModel)]=\"transportation\" value=\"2\" name=\"transportation\" type=\"radio\" id=\"by-train\">\n                        <label for=\"by-train\">Train</label>\n                    </li>\n                    <li>\n                        <input (change)=\"transportationChanged()\" [(ngModel)]=\"transportation\" value=\"3\" name=\"transportation\" type=\"radio\" id=\"by-plane\">\n                        <label for=\"by-plane\">Plane</label>\n                    </li>\n                </ul>\n            </form>\n        </div>\n    </div>\n\n    <div class=\"criteria-container\">\n        <h4>Budget</h4>\n        <div class=\"indented\">\n            <div class='criteria-slider' id=\"budget-slider\"></div>\n            <!--<input type=\"text\" id=\"budget-slider\" name=\"example_name\" value=\"\" />-->\n        </div>\n    </div>\n\n</div>"
 
 /***/ },
 /* 673 */
 /***/ function(module, exports) {
 
-module.exports = "<div id=\"search-bar\" class=\"top-bar\">\n    <input id=\"search-field\" type=\"text\" placeholder=\"Search\">\n    <ul id=\"search-bar-options\" class=\"no-bullets\">\n        <li><a href=\"/search/cart\">Favorites</a></li>\n        <li><a href=\"/\">Logout</a></li>\n    </ul>\n</div>"
+module.exports = "<div id=\"search-bar\" class=\"top-bar\">\n    <input [(ngModel)]=\"searchTerm\" id=\"search-field\" type=\"text\" placeholder=\"Search\">\n    <a (click)=\"searchEntered($event)\" class=\"waves-effect waves-light btn-flat\">\n        <i class=\"material-icons\">search</i>\n    </a>\n    <ul id=\"search-bar-options\" class=\"no-bullets\">\n        <li><a href=\"/search/cart\">Favorites</a></li>\n        <li><a href=\"/\">Logout</a></li>\n    </ul>\n</div>"
 
 /***/ },
 /* 674 */
@@ -60733,7 +60791,7 @@ module.exports = "<div class=\"search-item\">\n    <img class=\"search-item-thum
 /* 675 */
 /***/ function(module, exports) {
 
-module.exports = "<search-bar></search-bar>\n\n<div id=\"search-item-container\">\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n</div>\n\n<criteria-filter></criteria-filter>"
+module.exports = "<search-bar (search)=\"search($event)\"></search-bar>\n\n<div id=\"search-item-container\">\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n</div>\n\n<criteria-filter (parametersChange)=\"parametersChange()\"></criteria-filter>"
 
 /***/ },
 /* 676 */
@@ -63523,6 +63581,28 @@ if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment *
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__angular_core__["_25" /* enableProdMode */])();
 }
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_4__app_app_module__["a" /* AppModule */]);
+
+
+/***/ },
+/* 704 */,
+/* 705 */,
+/* 706 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return Parameter; });
+/**
+ * Created by NikhilVerma on 13/11/16.
+ */
+var Parameter = (function () {
+    function Parameter() {
+        this.travelTime = 1;
+        this.transportation = 1;
+        this.minBudget = 2000;
+        this.maxBudget = 6000;
+    }
+    return Parameter;
+}());
 
 
 /***/ }

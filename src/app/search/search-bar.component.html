@@ -1,5 +1,8 @@
 <div id="search-bar" class="top-bar">
-    <input id="search-field" type="text" placeholder="Search">
+    <input [(ngModel)]="searchTerm" id="search-field" type="text" placeholder="Search">
+    <a (click)="searchEntered($event)" class="waves-effect waves-light btn-flat">
+        <i class="material-icons">search</i>
+    </a>
     <ul id="search-bar-options" class="no-bullets">
         <li><a href="/search/cart">Favorites</a></li>
         <li><a href="/">Logout</a></li>

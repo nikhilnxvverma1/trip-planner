@@ -9,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class SearchComponent {
     constructor() { }
+
+    search(term:string){
+        console.log(" term is "+term);
+    }
+
+    parametersChange(parameter:Parameter){
+        console.log('recieved change for paraemetr ' +parameter);
+    }
 }

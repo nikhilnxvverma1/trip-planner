@@ -1,8 +1,8 @@
 <div id="criteria-filter-container">
     <div class="criteria-container">
         <h4>Travel Time</h4>
-        <div class="indented">
-            <input type="range" value="2" min="1" max="5">
+        <div class="indented range-field">
+            <input class='criteria-slider' type="range" (ngModelChange)="travelTimeChanged()" [(ngModel)]="travelTime" min="1" max="5">
         </div>
     </div>
     <div class="criteria-container">
@@ -10,9 +10,18 @@
         <div class="indented">
             <form action="">
                 <ul class="no-bullets">
-                    <li><input type="radio"> Road</li>
-                    <li><input type="radio"> Train</li>
-                    <li><input type="radio"> Plane</li>
+                    <li>
+                        <input (change)="transportationChanged()" [(ngModel)]="transportation" value="1" name="transportation" type="radio" id="by-road">
+                        <label for="by-road">Road</label>
+                    </li>
+                    <li>
+                        <input (change)="transportationChanged()" [(ngModel)]="transportation" value="2" name="transportation" type="radio" id="by-train">
+                        <label for="by-train">Train</label>
+                    </li>
+                    <li>
+                        <input (change)="transportationChanged()" [(ngModel)]="transportation" value="3" name="transportation" type="radio" id="by-plane">
+                        <label for="by-plane">Plane</label>
+                    </li>
                 </ul>
             </form>
         </div>
@@ -21,7 +30,8 @@
     <div class="criteria-container">
         <h4>Budget</h4>
         <div class="indented">
-            <input type="range" value="2" min="1" max="5">
+            <div class='criteria-slider' id="budget-slider"></div>
+            <!--<input type="text" id="budget-slider" name="example_name" value="" />-->
         </div>
     </div>
 

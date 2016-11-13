@@ -1,4 +1,4 @@
-<search-bar></search-bar>
+<search-bar (search)="search($event)"></search-bar>
 
 <div id="search-item-container">
     <search-item></search-item>
@@ -9,4 +9,4 @@
     <search-item></search-item>
 </div>
 
-<criteria-filter></criteria-filter>
+<criteria-filter (parametersChange)="parametersChange()"></criteria-filter>
