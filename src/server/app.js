@@ -1,5 +1,6 @@
 var express = require('express');
 var http = require('http');
+var https = require('https');
 var path = require('path');
 var passport = require('passport');
 var cookieParser = require('cookie-parser');
@@ -170,6 +171,30 @@ db.once('open', function() {
     }
     http.request(options, callback).end();
   });
+
+  app.get('/findplaces', function(req, res){
+    var lat = req.query.lat;
+    var long = req.query.long;
+    //The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
+    var options = {
+      host: 'api.tripadvisor.com',
+      path: '/api/partner/2.0/map/'+lat+','+long+'&key=2224bfda-c43d-4413-9c1d-74d252a545f3',
+    };
+    callback = function(response) {
+      var str = '';
+      //another chunk of data has been recieved, so append it to `str`
+      response.on('data', function (chunk) {
+        str += chunk;
+      });
+      //the whole response has been recieved, so we just print it out here
+      response.on('end', function () {
+        var parsedString = JSON.parse(str);
+        res.json(parsedString);
+      });
+    }
+    http.request(options, callback).end();
+  });
+
   // all other routes are handled by Angular
   app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname,'/../../dist/index.html'));
