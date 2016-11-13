@@ -50,6 +50,23 @@ body {
 #search-field{
     position: relative;
     width:600px;
-    outline: none;
     border:none;
+}
+
+.no-bullets{
+    list-style-type: none;
+}
+
+#search-bar-options{
+    float:right;
+}
+
+#search-bar-options li{
+    display: inline;
+    padding-right:30px;
+    height:60px;
+}
+
+#search-bar-options>li>a{
+    color:#fff;
 }

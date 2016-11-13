@@ -63108,7 +63108,7 @@ var SearchBarComponent = (function () {
 /* 699 */
 /***/ function(module, exports) {
 
-module.exports = "<div id=\"search-bar\" class=\"top-bar\">\n    <input id=\"search-field\" type=\"text\" placeholder=\"Search\">\n</div>"
+module.exports = "<div id=\"search-bar\" class=\"top-bar\">\n    <input id=\"search-field\" type=\"text\" placeholder=\"Search\">\n    <ul id=\"search-bar-options\" class=\"no-bullets\">\n        <li><a href=\"/compare\">Cart</a></li>\n        <li><a href=\"/\">Logout</a></li>\n    </ul>\n</div>"
 
 /***/ },
 /* 700 */
