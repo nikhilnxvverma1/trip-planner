@@ -18,12 +18,15 @@ import {TemperatureComponent} from "./compare/temperature.component";
 import {RatingComponent} from "./compare/rating.component";
 import {LocationComponent} from "./compare/location.component";
 import {CriteriaFilterComponent} from "./search/criteria-filter.component";
+import {CartComponent} from "./compare/cart.component";
+import {SavedItemComponent} from "./compare/saved-item.component";
 
 const routing = RouterModule.forRoot([
     { path: '',      component: LoginComponent },
     { path: 'signup', component: SignUpComponent },
     { path: 'search', component: SearchComponent },
-    { path: 'compare', component: CompareComponent }
+    { path: 'search/cart', component: CartComponent },
+    { path: 'search/cart/compare', component: CompareComponent }
 ]);
 
 @NgModule({
@@ -35,6 +38,8 @@ const routing = RouterModule.forRoot([
     SearchItemComponent,
     SearchBarComponent,
     CriteriaFilterComponent,
+    CartComponent,
+    SavedItemComponent,
     CompareComponent,
     LocationComponent,
     RatingComponent,

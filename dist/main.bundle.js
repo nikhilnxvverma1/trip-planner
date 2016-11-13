@@ -56914,6 +56914,8 @@ function getResolve(route) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__compare_rating_component__ = __webpack_require__(702);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__compare_location_component__ = __webpack_require__(701);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__search_criteria_filter_component__ = __webpack_require__(708);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__compare_cart_component__ = __webpack_require__(710);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__compare_saved_item_component__ = __webpack_require__(712);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -56942,11 +56944,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var routing = __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* RouterModule */].forRoot([
     { path: '', component: __WEBPACK_IMPORTED_MODULE_6__login_login_component__["a" /* LoginComponent */] },
     { path: 'signup', component: __WEBPACK_IMPORTED_MODULE_7__login_signup_component__["a" /* SignUpComponent */] },
     { path: 'search', component: __WEBPACK_IMPORTED_MODULE_9__search_search_component__["a" /* SearchComponent */] },
-    { path: 'compare', component: __WEBPACK_IMPORTED_MODULE_12__compare_compare_component__["a" /* CompareComponent */] }
+    { path: 'search/cart', component: __WEBPACK_IMPORTED_MODULE_18__compare_cart_component__["a" /* CartComponent */] },
+    { path: 'search/cart/compare', component: __WEBPACK_IMPORTED_MODULE_12__compare_compare_component__["a" /* CompareComponent */] }
 ]);
 var AppModule = (function () {
     function AppModule() {
@@ -56961,6 +56966,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_11__search_search_item_component__["a" /* SearchItemComponent */],
                 __WEBPACK_IMPORTED_MODULE_10__search_search_bar_component__["a" /* SearchBarComponent */],
                 __WEBPACK_IMPORTED_MODULE_17__search_criteria_filter_component__["a" /* CriteriaFilterComponent */],
+                __WEBPACK_IMPORTED_MODULE_18__compare_cart_component__["a" /* CartComponent */],
+                __WEBPACK_IMPORTED_MODULE_19__compare_saved_item_component__["a" /* SavedItemComponent */],
                 __WEBPACK_IMPORTED_MODULE_12__compare_compare_component__["a" /* CompareComponent */],
                 __WEBPACK_IMPORTED_MODULE_16__compare_location_component__["a" /* LocationComponent */],
                 __WEBPACK_IMPORTED_MODULE_15__compare_rating_component__["a" /* RatingComponent */],
@@ -63108,7 +63115,7 @@ var SearchBarComponent = (function () {
 /* 699 */
 /***/ function(module, exports) {
 
-module.exports = "<div id=\"search-bar\" class=\"top-bar\">\n    <input id=\"search-field\" type=\"text\" placeholder=\"Search\">\n    <ul id=\"search-bar-options\" class=\"no-bullets\">\n        <li><a href=\"/compare\">Cart</a></li>\n        <li><a href=\"/\">Logout</a></li>\n    </ul>\n</div>"
+module.exports = "<div id=\"search-bar\" class=\"top-bar\">\n    <input id=\"search-field\" type=\"text\" placeholder=\"Search\">\n    <ul id=\"search-bar-options\" class=\"no-bullets\">\n        <li><a href=\"/search/cart\">Cart</a></li>\n        <li><a href=\"/\">Logout</a></li>\n    </ul>\n</div>"
 
 /***/ },
 /* 700 */
@@ -63294,6 +63301,80 @@ var CriteriaFilterComponent = (function () {
 /***/ function(module, exports) {
 
 module.exports = "<div id=\"criteria-filter-container\">\n    <div class=\"criteria-container\">\n        <h4>Travel Time</h4>\n        <div class=\"indented\">\n            <input type=\"range\" value=\"2\" min=\"1\" max=\"5\">\n        </div>\n    </div>\n    <div class=\"criteria-container\">\n        <h4>Transportation</h4>\n        <div class=\"indented\">\n            <form action=\"\">\n                <ul class=\"no-bullets\">\n                    <li><input type=\"radio\"> Road</li>\n                    <li><input type=\"radio\"> Train</li>\n                    <li><input type=\"radio\"> Plane</li>\n                </ul>\n            </form>\n        </div>\n    </div>\n\n    <div class=\"criteria-container\">\n        <h4>Budget</h4>\n        <div class=\"indented\">\n            <input type=\"range\" value=\"2\" min=\"1\" max=\"5\">\n        </div>\n    </div>\n\n</div>"
+
+/***/ },
+/* 710 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return CartComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var CartComponent = (function () {
+    function CartComponent() {
+    }
+    CartComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
+            selector: 'cart',
+            template: __webpack_require__(711),
+        }), 
+        __metadata('design:paramtypes', [])
+    ], CartComponent);
+    return CartComponent;
+}());
+
+
+/***/ },
+/* 711 */
+/***/ function(module, exports) {
+
+module.exports = "<h1>Cart view</h1>\n<a href=\"/search/cart/compare\">Compare</a>\n<saved-item></saved-item>\n<saved-item></saved-item>\n<saved-item></saved-item>\n<saved-item></saved-item>\n<saved-item></saved-item>"
+
+/***/ },
+/* 712 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return SavedItemComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var SavedItemComponent = (function () {
+    function SavedItemComponent() {
+    }
+    SavedItemComponent = __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
+            selector: 'saved-item',
+            template: __webpack_require__(713),
+        }), 
+        __metadata('design:paramtypes', [])
+    ], SavedItemComponent);
+    return SavedItemComponent;
+}());
+
+
+/***/ },
+/* 713 */
+/***/ function(module, exports) {
+
+module.exports = "<h1>saved item</h1>"
 
 /***/ }
 ],[682]);
