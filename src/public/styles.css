@@ -1,10 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700');
 body {
     margin-top: 15px;
     margin-bottom: 10px;
     background: #F9F9F9;
     font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 300;
+    color:#050505;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-weight: 300;
 }
 
 .top-bar{
@@ -45,6 +51,8 @@ body {
     bottom:0px;
     width:300px;
     background: #fff;
+    padding-top: 40px;
+    padding-left: 20px;
 }
 
 #search-field{
@@ -69,4 +77,57 @@ body {
 
 #search-bar-options>li>a{
     color:#fff;
+}
+
+.indented{
+    padding-left:10px;
+}
+
+.criteria-container{
+    margin-bottom:40px;
+}
+
+#search-item-container{
+    padding-left: 350px;
+    padding-top:50px;
+    overflow-y: scroll;
+    position: absolute;
+    bottom: 0px;
+    top: 60px;
+}
+
+.search-item{
+    margin-bottom:30px;
+    height:150px;
+    width:80%;
+    position: relative;
+}
+
+.search-item p{
+    width:90%;
+}
+
+.rating{
+    bottom:10px;/* doesn't work like this without absolute or relative*/
+}
+
+.rating img{
+    maring-right:10px;
+}
+
+.add-to-cart{
+    position: absolute;
+    right:10px;
+    top:75px;
+}
+
+.search-item>h3{
+    maring-bottom:10px;
+}
+
+.search-item-thumbnail{
+    width:150px;
+    height:150px;
+    float:left;
+    margin-right:30px;
 }

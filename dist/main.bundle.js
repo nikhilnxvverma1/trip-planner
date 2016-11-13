@@ -62993,7 +62993,7 @@ var SearchComponent = (function () {
 /* 693 */
 /***/ function(module, exports) {
 
-module.exports = "\n<h1>search</h1>\n<search-bar></search-bar>\n<criteria-filter></criteria-filter>\n<a href=\"/compare\">compare</a>\n\n<search-item></search-item>\n<search-item></search-item>\n<search-item></search-item>\n<search-item></search-item>"
+module.exports = "<search-bar></search-bar>\n\n<div id=\"search-item-container\">\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n</div>\n\n<criteria-filter></criteria-filter>"
 
 /***/ },
 /* 694 */
@@ -63071,7 +63071,7 @@ var SearchItemComponent = (function () {
 /* 697 */
 /***/ function(module, exports) {
 
-module.exports = "<h5>search result</h5>"
+module.exports = "<div class=\"search-item\">\n    <img class=\"search-item-thumbnail\" src=\"images/thumbnail.png\"/>\n    <h3>Boston</h3>\n    <p>\n        Lorem ipsum dolor sit amet, per brute detraxit deterruisset an, nam te quaestio perpetua, in percipit\n        definitiones pri. Sea liber scaevola an, elitr dicant putent vis ut, sint graeco mel ut.\n    </p>\n    <div class=\"rating\">\n        <img src=\"images/star.png\"/>\n        <img src=\"images/star.png\"/>\n        <img src=\"images/star.png\"/>\n        <img src=\"images/star.png\"/>\n    </div>\n    <img src=\"images/tick.png\" class=\"add-to-cart\"/>\n\n</div>"
 
 /***/ },
 /* 698 */
@@ -63293,7 +63293,7 @@ var CriteriaFilterComponent = (function () {
 /* 709 */
 /***/ function(module, exports) {
 
-module.exports = "<div id=\"criteria-filter-container\">\n\n</div>"
+module.exports = "<div id=\"criteria-filter-container\">\n    <div class=\"criteria-container\">\n        <h4>Travel Time</h4>\n        <div class=\"indented\">\n            <input type=\"range\" value=\"2\" min=\"1\" max=\"5\">\n        </div>\n    </div>\n    <div class=\"criteria-container\">\n        <h4>Transportation</h4>\n        <div class=\"indented\">\n            <form action=\"\">\n                <ul class=\"no-bullets\">\n                    <li><input type=\"radio\"> Road</li>\n                    <li><input type=\"radio\"> Train</li>\n                    <li><input type=\"radio\"> Plane</li>\n                </ul>\n            </form>\n        </div>\n    </div>\n\n    <div class=\"criteria-container\">\n        <h4>Budget</h4>\n        <div class=\"indented\">\n            <input type=\"range\" value=\"2\" min=\"1\" max=\"5\">\n        </div>\n    </div>\n\n</div>"
 
 /***/ }
 ],[682]);
