@@ -17,7 +17,7 @@ export class SearchItemComponent implements OnInit{
     }
 
     ngOnInit():any{
-        this.ratingLoop=Array.from(Array(Math.ceil(this.searchItem.rating)).keys())
+        this.ratingLoop=Array.from(Array(Math.floor(this.searchItem.rating)).keys())
         this.halfStar=Math.ceil(this.searchItem.rating)-this.searchItem.rating>0;
     }
 }

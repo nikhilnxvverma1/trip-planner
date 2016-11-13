@@ -57535,7 +57535,7 @@ var SearchItemComponent = (function () {
     function SearchItemComponent() {
     }
     SearchItemComponent.prototype.ngOnInit = function () {
-        this.ratingLoop = Array.from(Array(Math.ceil(this.searchItem.rating)).keys());
+        this.ratingLoop = Array.from(Array(Math.floor(this.searchItem.rating)).keys());
         this.halfStar = Math.ceil(this.searchItem.rating) - this.searchItem.rating > 0;
     };
     __decorate([
@@ -57584,12 +57584,39 @@ var SearchComponent = (function () {
     SearchComponent.prototype.search = function (term) {
         console.log(" term is " + term);
         this.term = term;
-        this.searchItemList = this.dataService.getSearchResultFor(this.term, this.parameter);
+        //this.searchItemList=this.dataService.getSearchResultFor(this.term,this.parameter);
+        this.searchWithAjax();
     };
     SearchComponent.prototype.parametersChange = function (parameter) {
         console.log('recieved change for paraemetr ' + parameter);
         this.parameter = parameter;
-        this.searchItemList = this.dataService.getSearchResultFor(this.term, this.parameter);
+        //this.searchItemList=this.dataService.getSearchResultFor(this.term,this.parameter);
+        this.searchWithAjax();
+    };
+    SearchComponent.prototype.searchWithAjax = function () {
+        $.ajax({
+            url: '/getLatLong?location=' + this.term,
+            type: 'post',
+            error: function (error) {
+            },
+            success: function (data) {
+                this.findPlaces(data.lat, data.long);
+            },
+        });
+    };
+    SearchComponent.prototype.findPlaces = function (lat, long) {
+        $.ajax({
+            url: 'findplaces/?lat=' + lat + '&long=' + long,
+            type: 'get',
+            error: function (error) {
+            },
+            success: function (data) {
+                this.changeInFormat(data);
+            },
+        });
+    };
+    SearchComponent.prototype.changeInFormat = function (data) {
+        console.log(data);
     };
     SearchComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
@@ -60806,7 +60833,7 @@ module.exports = "<h1>sign up here</h1>\n\n<input type=\"text\" placeholder=\"Us
 /* 672 */
 /***/ function(module, exports) {
 
-module.exports = "<div id=\"criteria-filter-container\">\n    <div class=\"criteria-container\">\n        <h4>Travel Time</h4>\n        <div class=\"indented range-field\">\n            <input class='criteria-slider' type=\"range\" (ngModelChange)=\"travelTimeChanged()\" [(ngModel)]=\"travelTime\" min=\"1\" max=\"5\">\n        </div>\n    </div>\n    <div class=\"criteria-container\">\n        <h4>Transportation</h4>\n        <div class=\"indented\">\n            <form action=\"\">\n                <ul class=\"no-bullets\">\n                    <li>\n                        <input (change)=\"transportationChanged()\" [(ngModel)]=\"transportation\" value=\"1\" name=\"transportation\" type=\"radio\" id=\"by-road\">\n                        <label for=\"by-road\">Road</label>\n                    </li>\n                    <li>\n                        <input (change)=\"transportationChanged()\" [(ngModel)]=\"transportation\" value=\"2\" name=\"transportation\" type=\"radio\" id=\"by-train\">\n                        <label for=\"by-train\">Train</label>\n                    </li>\n                    <li>\n                        <input (change)=\"transportationChanged()\" [(ngModel)]=\"transportation\" value=\"3\" name=\"transportation\" type=\"radio\" id=\"by-plane\">\n                        <label for=\"by-plane\">Plane</label>\n                    </li>\n                </ul>\n            </form>\n        </div>\n    </div>\n\n    <div class=\"criteria-container\">\n        <h4>Budget</h4>\n        <div class=\"indented\">\n            <div class='criteria-slider' id=\"budget-slider\"></div>\n            <!--<input type=\"text\" id=\"budget-slider\" name=\"example_name\" value=\"\" />-->\n        </div>\n    </div>\n\n</div>"
+module.exports = "<div id=\"criteria-filter-container\">\n    <div class=\"criteria-container\">\n        <h4>Radius</h4>\n        <div class=\"indented range-field\">\n            <input class='criteria-slider' type=\"range\" (ngModelChange)=\"travelTimeChanged()\" [(ngModel)]=\"travelTime\" min=\"1\" max=\"5\">\n        </div>\n    </div>\n    <div class=\"criteria-container\">\n        <h4>Transportation</h4>\n        <div class=\"indented\">\n            <form action=\"\">\n                <ul class=\"no-bullets\">\n                    <li>\n                        <input (change)=\"transportationChanged()\" [(ngModel)]=\"transportation\" value=\"1\" name=\"transportation\" type=\"radio\" id=\"by-road\">\n                        <label for=\"by-road\">Road</label>\n                    </li>\n                    <li>\n                        <input (change)=\"transportationChanged()\" [(ngModel)]=\"transportation\" value=\"2\" name=\"transportation\" type=\"radio\" id=\"by-train\">\n                        <label for=\"by-train\">Train</label>\n                    </li>\n                    <li>\n                        <input (change)=\"transportationChanged()\" [(ngModel)]=\"transportation\" value=\"3\" name=\"transportation\" type=\"radio\" id=\"by-plane\">\n                        <label for=\"by-plane\">Plane</label>\n                    </li>\n                </ul>\n            </form>\n        </div>\n    </div>\n\n    <div class=\"criteria-container\">\n        <h4>Budget</h4>\n        <div class=\"indented\">\n            <div class='criteria-slider' id=\"budget-slider\"></div>\n            <!--<input type=\"text\" id=\"budget-slider\" name=\"example_name\" value=\"\" />-->\n        </div>\n    </div>\n\n</div>"
 
 /***/ },
 /* 673 */
@@ -63650,8 +63677,8 @@ var Parameter = (function () {
 var SearchItem = (function () {
     function SearchItem() {
         this.name = "Boston";
-        this.description = "Boston is a nice place and home to trip advisor";
-        this.rating = 3;
+        this.description = "Boston is the capital and largest city of the Commonwealth of Massachusetts in the United States. Boston is also the seat of Suffolk County, although the county government was disbanded on July 1, 1999.";
+        this.rating = 3.5;
         this.thumbnail = "images/thumbnail.png";
         this.picture = "images/thumbnail.png";
         this.tripAdvisorId = 1;
