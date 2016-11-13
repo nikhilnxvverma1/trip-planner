@@ -23,6 +23,25 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 </head>
 <body>
-  <app>Loading...</app>
+  <app>
+    <!--Preloader for all loading-->
+    <div
+            style="
+            position:absolute;
+            top:50%;
+            left:50%;
+            "
+            class="preloader-wrapper big active">
+      <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+      </div>
+    </div>
+  </app>
 </body>
 </html>
