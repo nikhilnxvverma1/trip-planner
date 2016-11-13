@@ -3,13 +3,14 @@
  */
 
 export class SearchItem{
-    name:string;
-    description:string;
-    rating:number;
-    thumbnail:string;
-    picture:string;
-    tripAdvisorId:number;
-    distanceFromUser:number;
-    latitude:number;
-    longitude:number;
+    name:string="Boston";
+    description:string="Boston is a nice place and home to trip advisor";
+    rating:number=3;
+    thumbnail:string="images/thumbnail.png";
+    picture:string="images/thumbnail.png";
+    tripAdvisorId:number=1;
+    distanceFromUser:number=234;
+    latitude:number=73.423;
+    longitude:number=63.234;
+    existsInCart:boolean=false;
 }

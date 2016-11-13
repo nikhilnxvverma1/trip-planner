@@ -11,17 +11,20 @@ import {SearchItem} from "../services/search-item";
     templateUrl: './search.component.html',
 })
 export class SearchComponent {
+    term:string;
     parameter:Parameter;
     searchItemList:SearchItem[]=[];
     constructor(@Inject private dataService:DataService) { }
 
     search(term:string){
         console.log(" term is "+term);
+        this.term=term;
+        this.searchItemList=this.dataService.getSearchResultFor(this.term,this.parameter);
     }
 
     parametersChange(parameter:Parameter){
         console.log('recieved change for paraemetr ' +parameter);
         this.parameter=parameter;
-
+        this.searchItemList=this.dataService.getSearchResultFor(this.term,this.parameter);
     }
 }

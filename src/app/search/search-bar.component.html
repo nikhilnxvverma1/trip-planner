@@ -1,5 +1,5 @@
 <div id="search-bar" class="top-bar">
-    <input [(ngModel)]="searchTerm" id="search-field" type="text" placeholder="Search">
+    <input [(ngModel)]="searchTerm" (keydown.enter)="searchEntered($event)" id="search-field" type="text" placeholder="Search">
     <a (click)="searchEntered($event)" class="waves-effect waves-light btn-flat">
         <i class="material-icons">search</i>
     </a>

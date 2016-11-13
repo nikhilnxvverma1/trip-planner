@@ -1,12 +1,9 @@
 <search-bar (search)="search($event)"></search-bar>
 
 <div id="search-item-container">
-    <search-item></search-item>
-    <search-item></search-item>
-    <search-item></search-item>
-    <search-item></search-item>
-    <search-item></search-item>
-    <search-item></search-item>
+    <div *ngFor="let searchItem of searchItemList">
+        <search-item [searchItem]="searchItem"></search-item>
+    </div>
 </div>
 
 <criteria-filter (parametersChange)="parametersChange($event)"></criteria-filter>

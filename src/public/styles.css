@@ -114,12 +114,14 @@ input[type=range].criteria-slider{
     position: absolute;
     bottom: 0px;
     top: 60px;
+    right: 0px;
+    left: 0px;
 }
 
 .search-item{
     margin-bottom:30px;
     height:150px;
-    width:80%;
+    width:800px;
     position: relative;
 }
 

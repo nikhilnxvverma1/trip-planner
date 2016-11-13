@@ -57518,6 +57518,7 @@ var SearchBarComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_search_item__ = __webpack_require__(707);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return SearchItemComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -57529,9 +57530,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var SearchItemComponent = (function () {
     function SearchItemComponent() {
     }
+    SearchItemComponent.prototype.ngOnInit = function () {
+        this.ratingLoop = Array.from(Array(Math.ceil(this.searchItem.rating)).keys());
+        this.halfStar = Math.ceil(this.searchItem.rating) - this.searchItem.rating > 0;
+    };
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Input */])('searchItem'), 
+        __metadata('design:type', (typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_search_item__["a" /* SearchItem */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__services_search_item__["a" /* SearchItem */]) === 'function' && _a) || Object)
+    ], SearchItemComponent.prototype, "searchItem", void 0);
     SearchItemComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
             selector: 'search-item',
@@ -57540,6 +57550,7 @@ var SearchItemComponent = (function () {
         __metadata('design:paramtypes', [])
     ], SearchItemComponent);
     return SearchItemComponent;
+    var _a;
 }());
 
 
@@ -57572,10 +57583,13 @@ var SearchComponent = (function () {
     }
     SearchComponent.prototype.search = function (term) {
         console.log(" term is " + term);
+        this.term = term;
+        this.searchItemList = this.dataService.getSearchResultFor(this.term, this.parameter);
     };
     SearchComponent.prototype.parametersChange = function (parameter) {
         console.log('recieved change for paraemetr ' + parameter);
         this.parameter = parameter;
+        this.searchItemList = this.dataService.getSearchResultFor(this.term, this.parameter);
     };
     SearchComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Component */])({
@@ -57599,6 +57613,7 @@ var SearchComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(295);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(680);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__search_item__ = __webpack_require__(707);
 /* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return DataService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -57612,12 +57627,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var DataService = (function () {
     function DataService(http) {
         this.http = http;
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json', 'charset': 'UTF-8' });
         this.options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* RequestOptions */]({ headers: this.headers });
     }
+    DataService.prototype.getSearchResultFor = function (term, parameter) {
+        var result = [];
+        for (var i = 0; i < 20; i++) {
+            result.push(new __WEBPACK_IMPORTED_MODULE_3__search_item__["a" /* SearchItem */]());
+        }
+        return result;
+    };
     DataService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["d" /* Injectable */])(), 
         __metadata('design:paramtypes', [(typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */] !== 'undefined' && __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */]) === 'function' && _a) || Object])
@@ -60789,19 +60812,19 @@ module.exports = "<div id=\"criteria-filter-container\">\n    <div class=\"crite
 /* 673 */
 /***/ function(module, exports) {
 
-module.exports = "<div id=\"search-bar\" class=\"top-bar\">\n    <input [(ngModel)]=\"searchTerm\" id=\"search-field\" type=\"text\" placeholder=\"Search\">\n    <a (click)=\"searchEntered($event)\" class=\"waves-effect waves-light btn-flat\">\n        <i class=\"material-icons\">search</i>\n    </a>\n    <ul id=\"search-bar-options\" class=\"no-bullets\">\n        <li><a href=\"/search/cart\">Favorites</a></li>\n        <li><a href=\"/\">Logout</a></li>\n    </ul>\n</div>"
+module.exports = "<div id=\"search-bar\" class=\"top-bar\">\n    <input [(ngModel)]=\"searchTerm\" (keydown.enter)=\"searchEntered($event)\" id=\"search-field\" type=\"text\" placeholder=\"Search\">\n    <a (click)=\"searchEntered($event)\" class=\"waves-effect waves-light btn-flat\">\n        <i class=\"material-icons\">search</i>\n    </a>\n    <ul id=\"search-bar-options\" class=\"no-bullets\">\n        <li><a href=\"/search/cart\">Favorites</a></li>\n        <li><a href=\"/\">Logout</a></li>\n    </ul>\n</div>"
 
 /***/ },
 /* 674 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"search-item\">\n    <img class=\"search-item-thumbnail\" src=\"images/thumbnail.png\"/>\n    <h3>Boston</h3>\n    <p>\n        Lorem ipsum dolor sit amet, per brute detraxit deterruisset an, nam te quaestio perpetua, in percipit\n        definitiones pri. Sea liber scaevola an, elitr dicant putent vis ut, sint graeco mel ut.\n    </p>\n    <div class=\"rating\">\n        <img src=\"images/star.png\"/>\n        <img src=\"images/star.png\"/>\n        <img src=\"images/star.png\"/>\n        <img src=\"images/star.png\"/>\n    </div>\n    <img src=\"images/tick.png\" class=\"add-to-cart\"/>\n\n</div>"
+module.exports = "<div class=\"search-item\">\n    <img class=\"search-item-thumbnail\" [attr.src]=\"searchItem.thumbnail\"/>\n    <h3>{{searchItem.name}}</h3>\n    <p>\n        {{searchItem.description}}\n    </p>\n    <div class=\"rating\">\n        <img *ngFor='let i of ratingLoop' src=\"images/star.png\"/>\n        <img *ngIf='halfStar' src=\"images/half-star.png\"/>\n    </div>\n    <img *ngIf='searchItem.existsInCart' src=\"images/tick.png\" class=\"add-to-cart\"/>\n\n</div>"
 
 /***/ },
 /* 675 */
 /***/ function(module, exports) {
 
-module.exports = "<search-bar (search)=\"search($event)\"></search-bar>\n\n<div id=\"search-item-container\">\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n    <search-item></search-item>\n</div>\n\n<criteria-filter (parametersChange)=\"parametersChange($event)\"></criteria-filter>"
+module.exports = "<search-bar (search)=\"search($event)\"></search-bar>\n\n<div id=\"search-item-container\">\n    <div *ngFor=\"let searchItem of searchItemList\">\n        <search-item [searchItem]=\"searchItem\"></search-item>\n    </div>\n</div>\n\n<criteria-filter (parametersChange)=\"parametersChange($event)\"></criteria-filter>"
 
 /***/ },
 /* 676 */
@@ -63612,6 +63635,32 @@ var Parameter = (function () {
         this.maxBudget = 6000;
     }
     return Parameter;
+}());
+
+
+/***/ },
+/* 707 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(exports, "a", function() { return SearchItem; });
+/**
+ * Created by NikhilVerma on 13/11/16.
+ */
+var SearchItem = (function () {
+    function SearchItem() {
+        this.name = "Boston";
+        this.description = "Boston is a nice place and home to trip advisor";
+        this.rating = 3;
+        this.thumbnail = "images/thumbnail.png";
+        this.picture = "images/thumbnail.png";
+        this.tripAdvisorId = 1;
+        this.distanceFromUser = 234;
+        this.latitude = 73.423;
+        this.longitude = 63.234;
+        this.existsInCart = false;
+    }
+    return SearchItem;
 }());
 
 
